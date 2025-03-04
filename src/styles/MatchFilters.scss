@@ -1,0 +1,24 @@
+/* Стили для каждого элемента списка */
+.select-item {
+  font-family: "Inter", sans-serif;
+
+  padding: 10px;
+  background-color: #0f1318;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.select-item:hover {
+  background-color: #e0e0e0;
+}
+
+.select-item:active {
+  background-color: #ccc;
+}
+
+.filters {
+  display: flex;
+  column-gap: 25px;
+}

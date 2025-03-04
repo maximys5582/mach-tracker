@@ -1,0 +1,14 @@
+.loader img {
+  width: 40px; // Установите нужный размер изображения
+  height: 40px; // Установите нужный размер изображения
+  animation: spin 2s linear infinite; // Анимация для вращения
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

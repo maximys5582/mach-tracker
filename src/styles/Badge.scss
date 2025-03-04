@@ -1,0 +1,20 @@
+.badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+
+  &.finished {
+    background-color: red; /* изменили на красный */
+    color: white;
+  }
+
+  &.live {
+    background-color: green;
+    color: white;
+  }
+
+  &.ongoing {
+    background-color: gray;
+    color: white;
+  }
+}

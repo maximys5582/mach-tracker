@@ -1,0 +1,232 @@
+.matches {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 20px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.matches-header__right {
+  display: flex;
+}
+
+.matches-header__left {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.match-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.match-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.status-badge {
+  margin-top: 5px;
+  padding: 4px 8px;
+  font-weight: bold;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-badge.live {
+  background-color: green;
+  color: white;
+}
+
+.status-badge.finished {
+  background-color: red;
+  color: white;
+}
+
+.status-badge.ongoing {
+  background-color: gray;
+  color: white;
+}
+
+.error-message {
+  font-family: "Inter", sans-serif;
+  column-gap: 10px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background-color: #0f1318;
+  padding: 10px 15px;
+
+  border-radius: 5px;
+}
+// MachList.scss
+
+.match-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+
+  .team-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Важно: каждая команда занимает всю доступную ширину */
+    row-gap: 10px;
+
+    h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .user-stats {
+      width: 100%; /*  Занимает всю ширину родителя */
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+      color: #fff;
+      column-gap: 10px;
+    }
+
+    .user-stats__row {
+      display: flex;
+      justify-content: space-between; // Выравнивание по краям
+      align-items: center;
+      width: 100%; /* Строка занимает всю ширину */
+    }
+
+    .user-stats__info {
+      width: 100%; /* Занимает всю ширину user-stats__row */
+      display: flex;
+      justify-content: space-between; // Распределение по краям
+      align-items: center;
+      background-color: #101318;
+      padding: 12px 12px;
+      border-radius: 5px;
+      text-align: center;
+
+      span:last-child {
+        color: #fafafa66;
+      }
+    }
+
+    .team-stats {
+      width: 100%;
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+      color: #fff;
+    }
+  }
+}
+
+.grey-style {
+  padding: 20px 12px;
+  color: #fafafa66;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #101318;
+
+  span {
+    color: #fff;
+  }
+}
+
+.vs {
+  display: none;
+}
+
+.chevron-down .arrow {
+  transition: transform 0.3s ease;
+}
+
+.chevron-down .arrow.open {
+  transform: rotate(180deg); /* Поворот стрелки на 180 градусов */
+}
+
+@media (max-width: 450px) {
+  .vs {
+    display: flex;
+    justify-content: center;
+  }
+
+  .matches-header {
+    display: block;
+    text-align: center;
+    &__left {
+      display: block;
+    }
+
+    &__right {
+      display: block;
+    }
+  }
+
+  .team {
+    column-gap: 5px;
+  }
+
+  .match-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .match-details .team-details .user-stats__info {
+    padding: 8px 5px;
+    display: block;
+  }
+
+  .match-details .team-details .user-stats {
+    width: auto;
+  }
+
+  .card .card-content {
+    padding: 0;
+  }
+
+  .card {
+    padding: 5px;
+  }
+
+  .matches {
+    padding: 10px;
+  }
+
+  .grey-style {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+}

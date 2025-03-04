@@ -1,0 +1,71 @@
+.custom-select {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #0b0e12;
+  color: #b4b5b6;
+  padding: 10px;
+}
+
+.selected-item {
+  padding: 8px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.custom-select:hover {
+  background-color: #0f1318;
+}
+
+/* Стиль для стрелки */
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s ease; /* Плавный переход */
+}
+
+/* Поворот стрелки, когда селект открыт */
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Выпадающий список */
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  color: #fff;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  margin-top: 7px;
+}
+
+/* Стили для каждого элемента в списке */
+.select-item {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-item:hover {
+  background-color: #e0e0e0;
+}
+
+.select-item:active {
+  background-color: #0b0e12;
+}
+
+@media (max-width: 450px) {
+  .custom-select {
+    width: 100%;
+    margin: 15px 0;
+  }
+}

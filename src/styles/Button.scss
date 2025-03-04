@@ -1,0 +1,28 @@
+.btn {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  display: flex;
+  column-gap: 10px;
+  background-color: #eb0237;
+  color: white;
+  border-radius: 5px;
+  padding: 15px 30px;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #a01131;
+  }
+
+  &:disabled {
+    background-color: #701328;
+  }
+}
+
+@media (max-width: 450px) {
+  .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+  }
+}
