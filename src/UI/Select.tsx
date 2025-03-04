@@ -2,8 +2,13 @@ import React, { useState } from "react"
 import { getImageByKey } from "../assets/getImageByKey"
 import "../styles/Select.scss"
 
+interface SelectItemProps {
+  value: string
+  onSelect: (value: string) => void
+}
+
 interface SelectProps {
-  children: React.ReactElement[] // Ensure the children are React elements (i.e., SelectItem)
+  children: React.ReactElement<SelectItemProps>[] // Here we define the type for SelectItem
   defaultValue?: string
   onChange?: (value: string) => void
 }

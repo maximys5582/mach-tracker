@@ -29,7 +29,6 @@ const Card: React.FC<CardProps> = ({
     >
       <div className="card-header">
         {children}
-        {/* Передаем isOpen в компонент ChevronDown */}
         <ChevronDown
           className={`icon ${isOpen ? "open" : ""}`}
           isOpen={isOpen}

@@ -2,9 +2,13 @@ import "../styles/MatchFilters.scss"
 import Select from "../UI/Select"
 import SelectItem from "../UI/SelectItem"
 
-const MatchFilters = () => {
+const MatchFilters = ({
+  onFilterChange,
+}: {
+  onFilterChange: (status: string) => void
+}) => {
   const handleSelectChange = (value: string) => {
-    console.log("Выбран статус:", value)
+    onFilterChange(value) // передаем выбранный фильтр обратно в родительский компонент
   }
 
   return (

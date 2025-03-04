@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { getImageByKey } from "../assets/getImageByKey"
 import "../styles/MachList.scss"
 import { useMatches } from "../UI/api"
@@ -36,8 +36,22 @@ interface Match {
   awayScore: number
 }
 
-const MatchList: React.FC = () => {
-  const { matches, refetch, loading, error } = useMatches()
+interface MatchListProps {
+  matches: Match[] // assuming `Match` is already defined
+  onUpdate: () => Promise<void>
+  loading: boolean
+  error: string
+}
+
+const MatchList: React.FC<MatchListProps> = () => {
+  const { matches, refetch, loading, error } = useMatches() as {
+    matches: Match[]
+    refetch: () => void
+    loading: boolean
+    error: string | null
+  }
+
+  const [filterStatus, setFilterStatus] = useState("all") // состояние для выбранного фильтра
 
   const getStatusClass = (status: string) => {
     switch (status) {
@@ -52,12 +66,19 @@ const MatchList: React.FC = () => {
     }
   }
 
+  // Фильтруем матчи по выбранному статусу
+  const filteredMatches = matches.filter((match) => {
+    if (filterStatus === "all") return true
+    return match.status.toLowerCase() === filterStatus.toLowerCase()
+  })
+
   return (
     <div className="matches">
       <div className="matches-header">
         <div className="matches-header__left">
           {getImageByKey("logo")}
-          <MatchFilters />
+          <MatchFilters onFilterChange={setFilterStatus} />{" "}
+          {/* Передаем функцию для обновления фильтра */}
         </div>
 
         <div className="matches-header__right">
@@ -74,7 +95,7 @@ const MatchList: React.FC = () => {
         </div>
       </div>
 
-      {matches.map((match, index) => (
+      {filteredMatches.map((match, index) => (
         <Card
           key={index}
           className="match-card"
@@ -83,25 +104,29 @@ const MatchList: React.FC = () => {
               <div className="team-details">
                 <h3>{match.awayTeam.name}</h3>
                 <div className="user-stats">
-                  {match.awayTeam.players.map((player, playerIndex) => (
-                    <div className="user-stats__row" key={playerIndex}>
-                      <div className="user-stats__info">
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            columnGap: "5px",
-                          }}
-                        >
-                          <img src={getImageByKey("avatar") as string} alt="" />
-                          <span style={{ color: "#fff" }}>
-                            {player.username}
-                          </span>
+                  <div className="user-stats">
+                    {match.homeTeam.players.map(
+                      (player: Player, playerIndex: number) => (
+                        <div className="user-stats__row" key={playerIndex}>
+                          <div className="user-stats__info">
+                            <div className="user-info">
+                              <img
+                                src={getImageByKey("avatar") as string}
+                                alt="Player Avatar"
+                                className="avatar"
+                              />
+                              <span className="player-username">
+                                {player.username}
+                              </span>
+                            </div>
+                            <span className="player-kills">
+                              Убийств: {player.kills}
+                            </span>
+                          </div>
                         </div>
-                        <span>Убийств: {player.kills}</span>
-                      </div>
-                    </div>
-                  ))}
+                      )
+                    )}
+                  </div>
                 </div>
                 <div className="team-stats">
                   <div className="grey-style">
@@ -121,25 +146,30 @@ const MatchList: React.FC = () => {
               <div className="team-details">
                 <h3>{match.homeTeam.name}</h3>
                 <div className="user-stats">
-                  {match.homeTeam.players.map((player, playerIndex) => (
-                    <div className="user-stats__row" key={playerIndex}>
-                      <div className="user-stats__info">
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            columnGap: "5px",
-                          }}
-                        >
-                          <img src={getImageByKey("avatar") as string} alt="" />
-                          <span style={{ color: "#fff" }}>
-                            {player.username}
-                          </span>
+                  {match.homeTeam.players.map(
+                    (player: Player, playerIndex: number) => (
+                      <div className="user-stats__row" key={playerIndex}>
+                        <div className="user-stats__info">
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              columnGap: "5px",
+                            }}
+                          >
+                            <img
+                              src={getImageByKey("avatar") as string}
+                              alt=""
+                            />
+                            <span style={{ color: "#fff" }}>
+                              {player.username}
+                            </span>
+                          </div>
+                          <span>Убийств: {player.kills}</span>
                         </div>
-                        <span>Убийств: {player.kills}</span>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
                 <div className="team-stats">
                   <div className="grey-style">
